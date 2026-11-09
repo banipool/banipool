@@ -40,6 +40,27 @@ Every transaction is simulated before signing; funds never leave the user's wall
 
 Swaps use the official Uniswap Universal Router; liquidity goes directly to the official DEX contracts and programs.
 
+## Solana
+
+BaniPool program on Solana mainnet:
+
+| Program | Purpose | Program ID |
+|---|---|---|
+| bani_keeper | Automation keeper for Orca Whirlpools positions (compound / rebalance / exit within a user-signed policy, with price-manipulation checks) | [`2tKdYPsJy6aejPYoJu5C2owXFcy6LoZzXxvgqvjGLU7U`](https://solscan.io/account/2tKdYPsJy6aejPYoJu5C2owXFcy6LoZzXxvgqvjGLU7U) |
+
+Official DEX programs BaniPool builds transactions for (liquidity goes directly to these programs, signed by the user's wallet):
+
+| DEX | Program ID |
+|---|---|
+| Orca Whirlpools | `whirLbMiicVdio4qvUfM5KAg6Ct8VwpYzGff3uctyCc` |
+| Raydium CLMM | `CAMMCzo5YL8w4VFF8KVHrK22GGUsp5VTaW7grrKgrWqK` |
+| Raydium CPMM | `CPMMoo8L3F4NbTegBCKVNunggL7H1ZpdTHKxQB5qKP1C` |
+| Meteora DLMM | `LBUZKhRxPF3XUpBCjp4YzTKgLccjZhTSDM9YuVaPwxo` |
+| Meteora DAMM v2 | `cpamdpZCGKUy5JxQXB4dcpGPiikHawvSWAd6mEn1sGG` |
+| PumpSwap | `pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA` |
+
+Solana swaps are routed through Jupiter. With the **private mempool** switch on, Solana transactions are sent through **Jito** (bundleOnly / atomic bundles) with a small tip, so they are not visible publicly before landing; pool creation + first deposit + tip land together in one bundle.
+
 ## Security
 
 - Non-custodial: BaniPool never holds user funds or keys and never asks for a seed phrase.
